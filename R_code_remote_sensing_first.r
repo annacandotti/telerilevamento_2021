@@ -44,3 +44,51 @@ clnir <- colorRampPalette(c("red", "orange", "yellow")) (100)
 plot(p224r63_2011$B4_sre, col=clnir)
 
 
+#visualizzazione dati RGB plot
+setwd("C:/lab/")
+install.packages("raster")
+library(raster)
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+p224r63_2011
+# Bande Landsat
+# B1: blu
+# B2: verde
+# B3: rosso
+# B4: infrarosso vicino
+# B5: infrarosso medio
+# B6: infrarosso termico
+# B7: infrarosso medio
+
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") #funzione visualizzazione a colori naturali, associo la posizione della banda al canale colore, applico anche stretch lineare
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin") #visualizzazione a falsi colori
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin") #infrarosso nel verde
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin") #infrarosso nel blu
+
+#montare le 4 immagini una dopo l´altra in uno schema multiframe 2x2
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") 
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin") 
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin") 
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin") 
+
+#funzione pdf
+pdf("il_mio_primo_pdf_con_R.pdf")
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") 
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin") 
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin") 
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin") 
+dev.off()
+
+#stretch histogram
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin") #stretch lineare
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist") # streth histogram, ottengo dimensioni frattali nella visualizzazione
+
+#par colori naturali, falsi colori e falsi colori con histogram stretch
+par(mfrow=c(3,1))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") 
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
+
+#plot di distribuzione delle specie nello spazio e nel tempo, funzione colorist
+
+

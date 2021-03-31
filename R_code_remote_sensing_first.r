@@ -33,6 +33,8 @@ plot(p224r63_2011$B2_sre)
 plot(p224r63_2011$B3_sre)
 plot(p224r63_2011$B4_sre)
 
+
+
 par(mfrow=c(2,2))
 clb <- colorRampPalette(c("dark blue", "blue", "light blue")) (100)
 plot(p224r63_2011$B1_sre, col=clb) #plotto la banda del blu con la color ramp palette
@@ -90,5 +92,41 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 
 #plot di distribuzione delle specie nello spazio e nel tempo, funzione colorist
+
+install.packages("RStoolbox") #per la pca
+library(RStoolbox)
+
+library(raster)
+setwd("C:/lab/")
+p224r63_2011<-brick("p224r63_2011_masked.grd")
+p224r63_2011
+#multitemporal set 
+p224r63_1988<-brick("p224r63_1988_masked.grd") #funzione brick importa un intero set di bande creando un raster brick (blocco di diversi raster tutti insieme)
+p224r63_1988
+
+plot(p224r63_1988) #per visualizzare le singole bande
+plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin") #plot in colori naturali con stretch lineare
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+
+#confronto a falsi colori
+par(mfrow=c(2,1))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
+#confronto stretch lineare in una riga e stretch hist (funzione logistica con pendenza maggiore) nella seconda riga
+pdf("multitemp.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+dev.off()
+
+
+
+
+
+
+
 
 

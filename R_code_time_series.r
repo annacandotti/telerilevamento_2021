@@ -27,3 +27,9 @@ import <- lapply(rlist,raster) #funzione lapply per applicare una funzione (qui 
 import #importo e visualizzo i quattro file
 TGr <- stack(import) #con la funzione stack costruisco un pacchetto di file raster (rasterstack) con nome 
 plot(TGr) #plotto direttamente tutto il file
+plotRGB(TGr, 1, 2, 3, stretch="Lin") #nel primo livello c´è lst del 2000, nel secondo 2005, nel terzo 2010, li associo al RGB, se ho colori rossi ho valori più alti nel 2000, se ho colori verdi ho valori piú alti nel 2005, se ho valori blu ho valori più alti nel 2010
+plotRGB(TGr, 2, 3, 4, stretch="Lin") 
+#colorist funzione per la distribuzione delle specie
+
+install.packages("rasterVis")
+library(rasterVis)

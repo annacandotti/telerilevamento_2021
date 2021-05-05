@@ -1,6 +1,9 @@
 # R_code_vegetation_indeces.r
 library(raster) #require(raster)
 library(RStoolbox)
+library(rasterdiv)
+library(rasterVis)
+
 setwd("C:/lab/")
 
 defor1 <- brick("defor1.jpg")
@@ -46,3 +49,10 @@ plot(vi2, col=cl)
 
 difndvi <- ndvi1 - ndvi2 
 plot(difndvi, col=cld)
+
+plot(copNDVI) #worldwideNDVI
+#pixel con valori 253, 254, 255 (acqua) saranno impostati come NA
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
+plot(copNDVI)
+
+levelplot(copNDVI)

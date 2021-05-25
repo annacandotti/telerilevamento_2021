@@ -31,8 +31,8 @@ plot(ndvi, col=cl)
 
 ndvisd3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=sd) 
 plot(ndvisd3)
-#w=window #finestra di 9 pixel in cui venga calcolato ciascuno in 3 righe e 3 colonne
-#calcolo dev st dell´immagine
+#w=window #finestra di 9 pixel in cui venga calcolato ciascuno in 3 righe e 3 colonne, la finestra raccoglie nel pixel centrale la dev. st. di tutti e 9
+#calcolo dev st dell´immagine, moving window sulla pc1 per creare una mappa con dev. st. della prima componente principale
 
 clsd <- colorRampPalette(c("blue", "green", "pink", "magenta", "orange", "brown"))(100)
 plot(ndvisd3, col=clsd)

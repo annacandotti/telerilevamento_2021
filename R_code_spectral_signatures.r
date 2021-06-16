@@ -35,4 +35,12 @@ water <- c(40,99,139)
 #creazione della tabella = dataframe
 spectrals <- data.frame(band, forest, water)
 
+#plot del dataset:
+#output del plot
+#aesthetics: la x corrisponde all´asse x nel grafico in cui voglio collocare le bande, mentre sull´asse y la riflettanza: una per la foresta e una per l´acqua
+#dopo il + si aggiungono le geometrie
+ggplot(spectrals, aes(x=band)) +
+      geom_line(aes(y = forest), color = "green")+
+      geom_line(aes(y = water), color = "blue", linetype = "dotted") +
+      labs(x="wavelength", y="reflectance")
 
